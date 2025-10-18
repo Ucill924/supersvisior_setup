@@ -1,15 +1,16 @@
 
+# install supervisior
 
     ```bash
     apt update 
     apt install -y curl wget nano supervisor screen 
     ```
-    
+#  Activate supervisior
     ```bash
     supervisord -c /etc/supervisor/supervisord.conf
     ```
 
-    
+# Setup
     ```bash
     curl -L "https://raw.githubusercontent.com/Ucill924/supersvisior_setup/main/setup.sh" -O setup.sh
     bash setup.sh
