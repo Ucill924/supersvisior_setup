@@ -80,8 +80,7 @@ All of them are independent commands to start , stop or restart a service. Your 
     supervisorctl tail -f broker:broker3
     ```
 
-⚡ Benchmarking Bento
-Edit Broker file
+⚡Edit Broker file
 ```bash
 Nano /app/broker3.toml
 ```
