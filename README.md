@@ -1,7 +1,7 @@
-# Supersvisior Setup
+Supersvisior Setup
 > This script helps you to run Bento and Boundless prover stack using **Supervisor**, without Docker.  
 
-## 🧰 Install Dependencies
+ 🧰 Install Dependencies
 1. Run the following commands to install system dependencies and Supervisor:
 
     ```bash
@@ -17,7 +17,7 @@
 
 ---
 
-## ⚙️ Setup Script
+ ⚙️ Setup Script
 Download and run the setup script:
 
 ```bash
@@ -25,7 +25,7 @@ curl -L "https://raw.githubusercontent.com/Ucill924/supersvisior_setup/main/setu
 bash setup.sh
 ```
 
-##🔁 Reload Environment
+🔁 Reload Environment
 After setup completes, restart your console or run the following commands:
 
 ```bash
@@ -33,7 +33,7 @@ source /root/.cargo/env
 source /root/.bashrc
 ```
 
-##🌐 RPC Configuration
+🌐 RPC Configuration
 Set up your RPC URL and wallet private key
 ```bash
 export RPC_URL=<BASE_MAINNET_RPC_URL>
@@ -41,13 +41,13 @@ export PRIVATE_KEY=<PRIVATE_KEY>
 source /app/.env.rpc
 ```
 
-##🧪 Test Bento
+🧪 Test Bento
 To verify Bento is working properly
 ```bash
 RUST_LOG=info bento_cli -c 32
 ```
 
-##⚡ Benchmarking Bento
+⚡ Benchmarking Bento
 Get a reference value for the peak_prove_khz parameter
 ```bash
 export RPC_URL=<TARGET_CHAIN_RPC_URL>
@@ -55,7 +55,7 @@ boundless proving benchmark --request-ids <IDS>
 ```
 
 
-🧩 ## Service management  
+🧩  Service management  
 All of them are independent commands to start , stop or restart a service. Your prover is running through `supervisord` so use `supervisorctl` commands to manage it
 - Dependencies:
     ```bash
@@ -80,7 +80,7 @@ All of them are independent commands to start , stop or restart a service. Your 
     supervisorctl tail -f broker:broker3
     ```
 
-##⚡ Benchmarking Bento
+⚡ Benchmarking Bento
 Edit Broker file
 ```bash
 Nano /app/broker3.toml
