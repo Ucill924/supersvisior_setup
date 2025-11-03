@@ -51,11 +51,12 @@ echo
 echo "-----Downloading prover binaries-----"
 mkdir /app
 
-curl -L "https://zzno.de/boundless/v1.0.0/broker" -o /app/broker
-curl -L "https://zzno.de/boundless/v1.0.0/broker-stress" -o /app/broker-stress
-curl -L "https://zzno.de/boundless/v1.0.0/bento-agent-v1_0_1-cuda12_8" -o /app/agent
-curl -L "https://zzno.de/boundless/v1.0.0/bento-rest-api" -o /app/rest_api
-curl -L "https://zzno.de/boundless/v1.0.0/bento-cli" -o /root/.cargo/bin/bento_cli
+curl -L "https://cancanneed.de/boundless/v1.0.0/broker" -o /app/broker
+curl -L "https://cancanneed.de/boundless/v1.0.0/broker-stress" -o /app/broker-stress
+curl -L "https://cancanneed.de/boundless/v1.0.0/bento-agent-v1_0_1-cuda12_8" -o /app/agent
+curl -L "https://cancanneed.de/boundless/v1.0.0/bento-rest-api" -o /app/rest_api
+curl -L "https://cancanneed.de/boundless/v1.0.0/bento-cli" -o /root/.cargo/bin/bento_cli
+
 
 chmod +x /app/agent
 chmod +x /app/broker
