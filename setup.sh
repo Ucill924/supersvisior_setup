@@ -44,8 +44,8 @@ apt install -y redis postgresql-16 adduser libfontconfig1 musl
 wget https://dl.min.io/server/minio/release/linux-amd64/archive/minio_20250613113347.0.0_amd64.deb -O minio.deb
 dpkg -i minio.deb
 
-curl -L "https://zzno.de/boundless/grafana-enterprise_11.0.0_amd64.deb" -o grafana-enterprise_11.0.0_amd64.deb
-dpkg -i grafana-enterprise_11.0.0_amd64.deb
+curl -L "https://dl.grafana.com/enterprise/release/grafana-enterprise_11.4.0_amd64.deb" -o grafana-enterprise_11.4.0_amd64.deb
+dpkg -i grafana-enterprise_11.4.0_amd64.deb
 echo
 
 echo "-----Downloading prover binaries-----"
@@ -219,7 +219,7 @@ strip_ansi=true
 programs=redis,postgres,minio,grafana
 
 [group:bento]
-programs=exec_agent0,exec_agent1,exec_agent2,exec_agent3,exec_agent4,exec_agent5,exec_agent6,exec_agent7,aux_agent,rest_api
+programs=exec_agent0,exec_agent1,aux_agent,rest_api
 
 [group:broker]
 programs=
@@ -297,85 +297,6 @@ stdout_logfile=/var/log/exec_agent1.log
 redirect_stderr=true
 environment=DATABASE_URL="postgresql://worker:password@localhost:5432/taskdb",REDIS_URL="redis://localhost:6379",S3_URL="http://localhost:9000",S3_BUCKET="workflow",S3_ACCESS_KEY="admin",S3_SECRET_KEY="password",RUST_LOG="info",RUST_BACKTRACE="1",RISC0_KECCAK_PO2="17",POVW_LOG_ID="${POVW_LOG_ID}"
 
-[program:exec_agent2]
-command=/app/agent -t exec --segment-po2 $MIN_SEGMENT_SIZE --redis-ttl 57600
-directory=/app
-autostart=false
-autorestart=true
-startsecs=5
-stopwaitsecs=10
-priority=50
-stdout_logfile=/var/log/exec_agent1.log
-redirect_stderr=true
-environment=DATABASE_URL="postgresql://worker:password@localhost:5432/taskdb",REDIS_URL="redis://localhost:6379",S3_URL="http://localhost:9000",S3_BUCKET="workflow",S3_ACCESS_KEY="admin",S3_SECRET_KEY="password",RUST_LOG="info",RUST_BACKTRACE="1",RISC0_KECCAK_PO2="17",POVW_LOG_ID="${POVW_LOG_ID}"
-
-[program:exec_agent3]
-command=/app/agent -t exec --segment-po2 $MIN_SEGMENT_SIZE --redis-ttl 57600
-directory=/app
-autostart=false
-autorestart=true
-startsecs=5
-stopwaitsecs=10
-priority=50
-stdout_logfile=/var/log/exec_agent1.log
-redirect_stderr=true
-environment=DATABASE_URL="postgresql://worker:password@localhost:5432/taskdb",REDIS_URL="redis://localhost:6379",S3_URL="http://localhost:9000",S3_BUCKET="workflow",S3_ACCESS_KEY="admin",S3_SECRET_KEY="password",RUST_LOG="info",RUST_BACKTRACE="1",RISC0_KECCAK_PO2="17",POVW_LOG_ID="${POVW_LOG_ID}"
-
-
-[program:exec_agent4]
-command=/app/agent -t exec --segment-po2 $MIN_SEGMENT_SIZE --redis-ttl 57600
-directory=/app
-autostart=false
-autorestart=true
-startsecs=5
-stopwaitsecs=10
-priority=50
-stdout_logfile=/var/log/exec_agent1.log
-redirect_stderr=true
-environment=DATABASE_URL="postgresql://worker:password@localhost:5432/taskdb",REDIS_URL="redis://localhost:6379",S3_URL="http://localhost:9000",S3_BUCKET="workflow",S3_ACCESS_KEY="admin",S3_SECRET_KEY="password",RUST_LOG="info",RUST_BACKTRACE="1",RISC0_KECCAK_PO2="17",POVW_LOG_ID="${POVW_LOG_ID}"
-
-
-[program:exec_agent5]
-command=/app/agent -t exec --segment-po2 $MIN_SEGMENT_SIZE --redis-ttl 57600
-directory=/app
-autostart=false
-autorestart=true
-startsecs=5
-stopwaitsecs=10
-priority=50
-stdout_logfile=/var/log/exec_agent1.log
-redirect_stderr=true
-environment=DATABASE_URL="postgresql://worker:password@localhost:5432/taskdb",REDIS_URL="redis://localhost:6379",S3_URL="http://localhost:9000",S3_BUCKET="workflow",S3_ACCESS_KEY="admin",S3_SECRET_KEY="password",RUST_LOG="info",RUST_BACKTRACE="1",RISC0_KECCAK_PO2="17",POVW_LOG_ID="${POVW_LOG_ID}"
-
-
-
-[program:exec_agent6]
-command=/app/agent -t exec --segment-po2 $MIN_SEGMENT_SIZE --redis-ttl 57600
-directory=/app
-autostart=false
-autorestart=true
-startsecs=5
-stopwaitsecs=10
-priority=50
-stdout_logfile=/var/log/exec_agent1.log
-redirect_stderr=true
-environment=DATABASE_URL="postgresql://worker:password@localhost:5432/taskdb",REDIS_URL="redis://localhost:6379",S3_URL="http://localhost:9000",S3_BUCKET="workflow",S3_ACCESS_KEY="admin",S3_SECRET_KEY="password",RUST_LOG="info",RUST_BACKTRACE="1",RISC0_KECCAK_PO2="17",POVW_LOG_ID="${POVW_LOG_ID}"
-
-
-[program:exec_agent7]
-command=/app/agent -t exec --segment-po2 $MIN_SEGMENT_SIZE --redis-ttl 57600
-directory=/app
-autostart=false
-autorestart=true
-startsecs=5
-stopwaitsecs=10
-priority=50
-stdout_logfile=/var/log/exec_agent1.log
-redirect_stderr=true
-environment=DATABASE_URL="postgresql://worker:password@localhost:5432/taskdb",REDIS_URL="redis://localhost:6379",S3_URL="http://localhost:9000",S3_BUCKET="workflow",S3_ACCESS_KEY="admin",S3_SECRET_KEY="password",RUST_LOG="info",RUST_BACKTRACE="1",RISC0_KECCAK_PO2="17",POVW_LOG_ID="${POVW_LOG_ID}"
-
-
-
 [program:aux_agent]
 command=/app/agent -t aux --monitor-requeue --redis-ttl 57600
 directory=/app
@@ -431,7 +352,7 @@ supervisorctl status
 echo
 
 echo "-----Initializing database-----"
-curl -L "hhttps://raw.githubusercontent.com/Ucill924/supersvisior_setup/main/initdb.sh" -o initdb.sh
+curl -L "https://raw.githubusercontent.com/walirt/boundless-prover/refs/heads/main/initdb.sh" -o initdb.sh
 chmod +x initdb.sh
 ./initdb.sh
 mkdir /db
