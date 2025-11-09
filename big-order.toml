@@ -8,7 +8,7 @@ cat > /app/broker3.toml <<'EOF'
 # decide the minimum price to accept for a request.
 
 
-mcycle_price = "0.00000003"
+mcycle_price = "0.00000006"
 # Mega-cycle price, denominated in the Boundless collateral token.
 #
 # Similar to the mcycle_price option above. This is used to determine the minimum price to accept an
