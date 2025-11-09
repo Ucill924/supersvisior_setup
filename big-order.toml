@@ -44,14 +44,14 @@ max_mcycle_limit = 1000000
 # Orders that produce a journal larger than this size in preflight will be skipped. Since journals
 # must be posted onchain to complete an order, an excessively large journal may prevent completion
 # of a request.
-max_journal_bytes = 8000
+max_journal_bytes = 1000
 # Min seconds left before the deadline to consider bidding on a request.
 #
 # If there is not enough time left before the deadline, the prover may not be able to complete
 # proving of the request and finalize the batch for publishing before expiration.
 min_deadline = 300
 # On startup, the number of blocks to look back for possible open orders.
-lookback_blocks = 600 # 300 blocks ~ 1 hour @ 12s block times
+lookback_blocks = 5000 # 300 blocks ~ 1 hour @ 12s block times
 # Max collateral amount, denominated in the Boundless collateral token.
 #
 # Requests that require a higher collateral amount than this will not be considered.
