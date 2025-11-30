@@ -69,7 +69,7 @@ chmod +x agent
 ### -----------------------------
 ### 4. GENERATE SUPERVISOR CONFIG
 ### -----------------------------
-CONF_FILE=/etc/supervisor/conf.d/boundless-gpu.conf
+CONF_FILE=/etc/supervisor/conf.d/boundless.conf
 
 echo "[6] Generate supervisor config..."
 echo "" > $CONF_FILE
