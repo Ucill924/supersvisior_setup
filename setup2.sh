@@ -369,10 +369,12 @@ cat > /etc/postgresql/16/main/postgresql.conf <<'PGCONF'
 # FILE LOCATIONS
 #------------------------------------------------------------------------------
 
-# IMPORTANT: harus sama dengan flag -D di supervisord (/data/postgresql).
-# Kalau di-set ke /var/lib/postgresql/16/main, postgres bakal baca cluster
-# Debian default yang gak punya user "worker" / db "taskdb".
-data_directory = '/data/postgresql'
+# IMPORTANT: cluster yang dipakai (punya user "worker" / db "taskdb") dibuat
+# oleh initdb.sh saat postgres jalan dengan config Debian default, yaitu di
+# /var/lib/postgresql/16/main. GUC data_directory menang atas flag -D di
+# supervisord, jadi harus diarahkan ke /var/lib, BUKAN /data/postgresql
+# (yang kosong / gak pernah di-initdb). Salah set di sini = postgres FATAL.
+data_directory = '/var/lib/postgresql/16/main'
 hba_file = '/etc/postgresql/16/main/pg_hba.conf'
 ident_file = '/etc/postgresql/16/main/pg_ident.conf'
 external_pid_file = '/var/run/postgresql/16-main.pid'
