@@ -31,8 +31,8 @@ supervisord -c /etc/supervisor/supervisord.conf
 ## Jalanin Setup
 
 ```bash
-curl -L "https://raw.githubusercontent.com/Ucill924/supersvisior_setup/main/v2_migration/setup.sh" -o setup.sh
-bash setup.sh
+curl -L "https://raw.githubusercontent.com/Ucill924/supersvisior_setup/main/setup_v2.sh" -o setup_v2.sh
+bash setup_v2.sh
 ```
 
 Script bakal minta: Base Mainnet RPC URL, prover private key, POVW Log ID (kosongin kalau gak mining). Opsi `-s` buat silent mode (isi placeholder, edit belakangan di `/etc/supervisor/conf.d/prover.conf`).
@@ -107,10 +107,51 @@ Habis itu broker jalan sendiri: discover order, lock, prove di GPU, submit, dape
 
 ## Service Management
 
+Dependencies (redis):
+
 ```bash
-supervisorctl start|stop|restart dependencies:*
-supervisorctl start|stop|restart bento:*
-supervisorctl start|stop|restart broker:*
+supervisorctl start dependencies:*
+```
+
+```bash
+supervisorctl stop dependencies:*
+```
+
+```bash
+supervisorctl restart dependencies:*
+```
+
+Bento (rest_api, exec, aux, gpu agents):
+
+```bash
+supervisorctl start bento:*
+```
+
+```bash
+supervisorctl stop bento:*
+```
+
+```bash
+supervisorctl restart bento:*
+```
+
+Broker:
+
+```bash
+supervisorctl start broker:*
+```
+
+```bash
+supervisorctl stop broker:*
+```
+
+```bash
+supervisorctl restart broker:*
+```
+
+Status semua service:
+
+```bash
 supervisorctl status
 ```
 
@@ -118,7 +159,13 @@ Logs:
 
 ```bash
 tail -f /var/log/broker.log
+```
+
+```bash
 tail -f /var/log/gpu_prove_agent0.log
+```
+
+```bash
 tail -f /var/log/rest_api.log
 ```
 
