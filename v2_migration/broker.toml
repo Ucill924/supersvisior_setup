@@ -1,0 +1,81 @@
+cat > /app/broker.toml <<'EOF'
+
+
+
+[market]
+# v1: mcycle_price -> v2: min_mcycle_price
+# v2 bisa pakai notasi USD (auto-konversi via price oracle) atau ETH.
+# Angka polos tanpa suffix = ETH (backward compat).
+min_mcycle_price = "0.00000005"
+# alternatif gaya v2: min_mcycle_price = "0.0002 USD"
+
+# Pengganti mcycle_price_collateral_token (dihapus di v2).
+# Harga secondary (lock-expired) diturunkan dari min_mcycle_price via oracle
+# dikali probabilitas ini. Set 1 biar secondary tetap gak menarik
+# (setara nilai 99999 di config v1).
+expected_probability_win_secondary_fulfillment = 1
+
+# Estimasi kecepatan cluster (kHz)
+peak_prove_khz = 7500
+
+# ===== FILTER: CUMA REQUESTOR INI =====
+# Address requestor = 40 hex pertama dari request id.
+allow_client_addresses = [
+    "0x371479ca8a23b662f5b08d137bb21a4850861aca",
+]
+# CATATAN: priority_requestor_addresses sengaja GAK dipakai,
+# karena priority requestor BYPASS max_mcycle_limit.
+# Allow-list aja udah cukup mastiin cuma requestor ini yang masuk.
+
+# ===== FILTER: CUMA ORDER KECIL =====
+# "Small" versi release notes = 10-100 mcycle. Dikasih ruang sampai 500
+# mcycle (0.5B cycle). Naikkan kalau kebanyakan order ke-skip.
+max_mcycle_limit = 500
+
+max_journal_bytes = 1000000
+min_deadline = 7200
+lookback_blocks = 5000
+
+# Angka polos = ZKC (bisa juga "100 USD")
+max_collateral = "102"
+
+max_file_size = 10_000_000_000
+max_concurrent_preflights = 6
+
+# PENTING: di config v1 ini 0 (= STOP ambil order). Buat jalan otomatis
+# harus >= 1.
+max_concurrent_proofs = 1
+
+order_pricing_priority = "shortest_expiry"
+order_commitment_priority = "shortest_expiry"
+max_critical_task_retries = 10
+
+# lockin_priority_gas DEPRECATED di v2 (diabaikan + warning).
+# Pengganti: gas_priority_mode. Dibiarkan default.
+# gas_priority_mode = "aggressive"
+
+balance_warn_threshold = "0.1"
+balance_error_threshold = "0.05"
+collateral_balance_warn_threshold = "10"
+collateral_balance_error_threshold = "5"
+
+lockin_gas_estimate = 800000
+fulfill_gas_estimate = 800000
+
+[prover]
+status_poll_retry_count = 3
+status_poll_ms = 1000
+req_retry_count = 3
+req_retry_sleep_ms = 500
+proof_retry_count = 1
+proof_retry_sleep_ms = 500
+
+[batcher]
+batch_max_time = 400
+min_batch_size = 1
+block_deadline_buffer_secs = 180
+txn_timeout = 90
+single_txn_fulfill = true
+withdraw = false
+max_submission_attempts = 200
+EOF
