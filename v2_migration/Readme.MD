@@ -31,8 +31,8 @@ supervisord -c /etc/supervisor/supervisord.conf
 ## Jalanin Setup
 
 ```bash
-curl -L "https://raw.githubusercontent.com/Ucill924/supersvisior_setup/blob/main/v2_migration/setup.sh" -o setup_v2.sh
-bash setup_v2.sh
+curl -L "https://raw.githubusercontent.com/Ucill924/supersvisior_setup/blob/main/v2_migration/setup.sh" -o setup.sh
+bash setup.sh
 ```
 
 Script bakal minta: Base Mainnet RPC URL, prover private key, POVW Log ID (kosongin kalau gak mining). Opsi `-s` buat silent mode (isi placeholder, edit belakangan di `/etc/supervisor/conf.d/prover.conf`).
