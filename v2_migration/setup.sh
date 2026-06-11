@@ -1,18 +1,5 @@
 #!/bin/bash
-# ============================================================================
-# setup_v2.sh - Boundless Prover v2.0 (Redis-only) via Supervisor, NO Docker
-#
-# Binary v2 resmi dikemas sebagai Docker image di ghcr.io. Script ini narik
-# image itu pakai `crane` (binary tunggal, bukan Docker, tanpa daemon) lalu
-# extract /app/agent, /app/rest_api, /app/broker, bento_cli, RISC0 runtime,
-# dan artifact BLAKE3 langsung dari layer image. Tanpa build, tanpa compile.
-#
-# Stack v2 (Redis-only): redis + rest_api + exec_agent + aux_agent +
-# gpu_prove_agent (1 per GPU) + broker. TANPA Postgres, TANPA MinIO.
-#
-# Pakai: bash setup_v2.sh
-# Lalu jawab prompt RPC + private key, atau pakai -s buat silent mode.
-# ============================================================================
+
 set -e
 
 SILENT_MODE=false
