@@ -31,7 +31,7 @@ supervisord -c /etc/supervisor/supervisord.conf
 ## Jalanin Setup
 
 ```bash
-curl -L "https://raw.githubusercontent.com/Ucill924/supersvisior_setup/blob/main/v2_migration/setup.sh" -o setup.sh
+curl -L "https://raw.githubusercontent.com/Ucill924/supersvisior_setup/main/v2_migration/setup.sh" -o setup.sh
 bash setup.sh
 ```
 
