@@ -59,6 +59,7 @@ balance_error_threshold = "0.05"
 collateral_balance_warn_threshold = "10"
 collateral_balance_error_threshold = "5"
 
+skip_gas_profitability_check = false
 lockin_gas_estimate = 800000
 fulfill_gas_estimate = 800000
 
