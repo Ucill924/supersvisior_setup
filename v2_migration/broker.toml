@@ -37,7 +37,7 @@ min_deadline = 7200
 lookback_blocks = 5000
 
 # Angka polos = ZKC (bisa juga "100 USD")
-max_collateral = "102"
+max_collateral = "25"
 
 max_file_size = 10_000_000_000
 # max_concurrent_preflights = 6
