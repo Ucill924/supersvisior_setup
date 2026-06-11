@@ -40,7 +40,7 @@ lookback_blocks = 5000
 max_collateral = "102"
 
 max_file_size = 10_000_000_000
-max_concurrent_preflights = 6
+# max_concurrent_preflights = 6
 
 # PENTING: di config v1 ini 0 (= STOP ambil order). Buat jalan otomatis
 # harus >= 1.
